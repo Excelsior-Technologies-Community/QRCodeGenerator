@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="upload_button_color">#4CAF50</color>
     <color name="camera_button_color">#2196F3</color>
+    <color name="realtime_button_color">#FF5722</color>
 </resources>

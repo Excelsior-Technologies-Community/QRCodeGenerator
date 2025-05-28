@@ -189,9 +189,11 @@ class QRGenerativeActivity : AppCompatActivity() {
     }
 
     private fun createQRCodeBitmap(text: String, width: Int, height: Int): Bitmap {
-        val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-        hints[EncodeHintType.CHARACTER_SET] = "UTF-8"
-        hints[EncodeHintType.MARGIN] = 1
+        val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java).apply {
+            put(EncodeHintType.CHARACTER_SET, "UTF-8")
+            put(EncodeHintType.ERROR_CORRECTION, com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.H)
+            put(EncodeHintType.MARGIN, 2)
+        }
 
         try {
             val bitMatrix: BitMatrix = MultiFormatWriter().encode(
@@ -202,7 +204,7 @@ class QRGenerativeActivity : AppCompatActivity() {
                 hints
             )
 
-            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 
             for (x in 0 until width) {
                 for (y in 0 until height) {
@@ -218,36 +220,75 @@ class QRGenerativeActivity : AppCompatActivity() {
     }
 
     private fun overlayImageOnQR(qrBitmap: Bitmap, overlayBitmap: Bitmap): Bitmap {
-        val result = Bitmap.createBitmap(qrBitmap.width, qrBitmap.height, qrBitmap.config)
+        val result = Bitmap.createBitmap(qrBitmap.width, qrBitmap.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(result)
 
         // Draw the QR code
         canvas.drawBitmap(qrBitmap, 0f, 0f, null)
 
-        // Calculate the size and position for the overlay image (20% of QR code size)
-        val overlaySize = (qrBitmap.width * 0.2f).toInt()
+        // Calculate the size and position for the overlay image (25% of QR code size)
+        val overlaySize = (qrBitmap.width * 0.25f).toInt()
         val left = (qrBitmap.width - overlaySize) / 2
         val top = (qrBitmap.height - overlaySize) / 2
 
-        // Create a circular overlay
-        val scaledOverlay = Bitmap.createScaledBitmap(overlayBitmap, overlaySize, overlaySize, true)
+        // Create a circular overlay with proper center cropping
+        val scaledOverlay = createCenterCroppedBitmap(overlayBitmap, overlaySize)
         val circularOverlay = getCircularBitmap(scaledOverlay)
 
-        // Draw white background circle for better visibility
+        // Draw white background circle with border for better visibility
         val backgroundPaint = Paint().apply {
             color = Color.WHITE
             isAntiAlias = true
+            style = Paint.Style.FILL
         }
-        val radius = overlaySize / 2f + 8f
-        canvas.drawCircle(
-            left + overlaySize / 2f,
-            top + overlaySize / 2f,
-            radius,
-            backgroundPaint
-        )
+        val borderPaint = Paint().apply {
+            color = Color.BLACK
+            isAntiAlias = true
+            style = Paint.Style.STROKE
+            strokeWidth = 4f
+        }
+
+        val radius = overlaySize / 2f + 12f
+        val centerX = left + overlaySize / 2f
+        val centerY = top + overlaySize / 2f
+
+        // Draw white background circle
+        canvas.drawCircle(centerX, centerY, radius, backgroundPaint)
+        // Draw black border
+        canvas.drawCircle(centerX, centerY, radius, borderPaint)
 
         // Draw the circular overlay image
         canvas.drawBitmap(circularOverlay, left.toFloat(), top.toFloat(), null)
+
+        return result
+    }
+
+    private fun createCenterCroppedBitmap(source: Bitmap, size: Int): Bitmap {
+        val sourceWidth = source.width
+        val sourceHeight = source.height
+
+        // Compute the scaling factors
+        val xScale = size.toFloat() / sourceWidth
+        val yScale = size.toFloat() / sourceHeight
+        val scale = maxOf(xScale, yScale)
+
+        // Compute the source rectangle for center cropping
+        val scaledWidth = (size / scale).toInt()
+        val scaledHeight = (size / scale).toInt()
+        val left = (sourceWidth - scaledWidth) / 2
+        val top = (sourceHeight - scaledHeight) / 2
+
+        // Create the source rectangle
+        val sourceRect = Rect(left, top, left + scaledWidth, top + scaledHeight)
+        val destRect = Rect(0, 0, size, size)
+
+        // Create and draw the scaled bitmap
+        val result = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(result)
+        canvas.drawBitmap(source, sourceRect, destRect, Paint().apply {
+            isFilterBitmap = true
+            isAntiAlias = true
+        })
 
         return result
     }
@@ -258,14 +299,27 @@ class QRGenerativeActivity : AppCompatActivity() {
 
         val paint = Paint().apply {
             isAntiAlias = true
+            color = Color.WHITE
         }
 
         val rect = Rect(0, 0, bitmap.width, bitmap.height)
         val rectF = RectF(rect)
 
+        // Draw white background
         canvas.drawOval(rectF, paint)
+
+        // Draw the bitmap
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(bitmap, rect, rect, paint)
+
+        // Draw border
+        paint.apply {
+            xfermode = null
+            style = Paint.Style.STROKE
+            color = Color.BLACK
+            strokeWidth = 3f
+        }
+        canvas.drawOval(rectF, paint)
 
         return output
     }

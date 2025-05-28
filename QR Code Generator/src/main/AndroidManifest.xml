@@ -7,6 +7,8 @@
         android:maxSdkVersion="28" /> <!-- If you want to use camera for image capture (optional) -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- For Android 13+ (API 33+) if you want to read media images -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application>
         <activity
@@ -15,6 +17,10 @@
         <activity
             android:name="com.ext.codegenerator.QRGenerativeActivity"
             android:exported="false" />
+        <activity
+            android:name="com.ext.codegenerator.CameraPreviewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

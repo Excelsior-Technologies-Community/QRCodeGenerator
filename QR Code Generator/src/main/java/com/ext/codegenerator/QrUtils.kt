@@ -86,9 +86,11 @@ object QRUtils {
     }
 
     private fun createQRCodeBitmap(text: String, width: Int, height: Int): Bitmap {
-        val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java)
-        hints[EncodeHintType.CHARACTER_SET] = "UTF-8"
-        hints[EncodeHintType.MARGIN] = 1
+        val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java).apply {
+            put(EncodeHintType.CHARACTER_SET, "UTF-8")
+            put(EncodeHintType.ERROR_CORRECTION, com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.H)
+            put(EncodeHintType.MARGIN, 2)
+        }
 
         try {
             val bitMatrix: BitMatrix = MultiFormatWriter().encode(
@@ -99,7 +101,7 @@ object QRUtils {
                 hints
             )
 
-            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+            val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
 
             for (x in 0 until width) {
                 for (y in 0 until height) {
@@ -115,14 +117,14 @@ object QRUtils {
     }
 
     private fun overlayImageOnQR(qrBitmap: Bitmap, overlayBitmap: Bitmap): Bitmap {
-        val result = Bitmap.createBitmap(qrBitmap.width, qrBitmap.height, qrBitmap.config)
+        val result = Bitmap.createBitmap(qrBitmap.width, qrBitmap.height, Bitmap.Config.ARGB_8888)
         val canvas = Canvas(result)
 
         // Draw the QR code
         canvas.drawBitmap(qrBitmap, 0f, 0f, null)
 
-        // Calculate the size and position for the overlay image (20% of QR code size)
-        val overlaySize = (qrBitmap.width * 0.2f).toInt()
+        // Calculate the size and position for the overlay image (15% of QR code size)
+        val overlaySize = (qrBitmap.width * 0.15f).toInt()
         val left = (qrBitmap.width - overlaySize) / 2
         val top = (qrBitmap.height - overlaySize) / 2
 
@@ -135,7 +137,7 @@ object QRUtils {
             color = Color.WHITE
             isAntiAlias = true
         }
-        val radius = overlaySize / 2f + 8f
+        val radius = overlaySize / 2f + 4f // Reduced padding
         canvas.drawCircle(
             left + overlaySize / 2f,
             top + overlaySize / 2f,
@@ -155,12 +157,14 @@ object QRUtils {
 
         val paint = Paint().apply {
             isAntiAlias = true
+            color = Color.WHITE
         }
 
         val rect = Rect(0, 0, bitmap.width, bitmap.height)
         val rectF = RectF(rect)
 
         canvas.drawOval(rectF, paint)
+
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(bitmap, rect, rect, paint)
 

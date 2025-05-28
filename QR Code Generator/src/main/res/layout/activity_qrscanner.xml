@@ -31,6 +31,16 @@
             android:layout_marginBottom="32dp" />
 
         <Button
+            android:id="@+id/btnRealtimeScan"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="📱 Scan QR Code (Real-time)"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_button"
+            android:backgroundTint="@color/realtime_button_color" />
+
+        <Button
             android:id="@+id/btnUploadImage"
             android:layout_width="match_parent"
             android:layout_height="60dp"
