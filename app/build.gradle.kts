@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.ext.qrcodegenerator"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ext.qrcodegenerator"
@@ -45,4 +45,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(project(":QR Code Generator"))
 }
