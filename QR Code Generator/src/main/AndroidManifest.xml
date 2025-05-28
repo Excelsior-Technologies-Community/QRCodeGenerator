@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" /> <!-- If you want to use camera for image capture (optional) -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- For Android 13+ (API 33+) if you want to read media images -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <application>
+        <activity
+            android:name="com.ext.codegenerator.QRScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.ext.codegenerator.QRGenerativeActivity"
+            android:exported="false" />
+    </application>
+
 </manifest>
