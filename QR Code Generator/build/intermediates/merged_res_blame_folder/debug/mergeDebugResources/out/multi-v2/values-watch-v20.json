@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ext.qrcodegenerator.QR Code Generator-mergeDebugResources-36:/values-watch-v20/values-watch-v20.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\yashr\\.gradle\\caches\\8.9\\transforms\\f755b44fcb4274a79631eff702bf6ae9\\transformed\\appcompat-1.6.1\\res\\values-watch-v20\\values-watch-v20.xml",
+                    "from": {
+                        "startLines": "2,5,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,214,385",
+                        "endLines": "4,7,10",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "209,380,553"
+                    }
+                }
+            ]
+        }
+    ]
+}

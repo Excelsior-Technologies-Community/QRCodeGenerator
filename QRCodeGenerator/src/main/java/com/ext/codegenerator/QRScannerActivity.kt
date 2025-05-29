@@ -52,8 +52,8 @@ class QRScannerActivity : AppCompatActivity() {
     private val realtimeScannerLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.resultCode == CameraPreviewActivity.RESULT_QR_SCANNED) {
-            result.data?.getStringExtra(CameraPreviewActivity.EXTRA_SCANNED_TEXT)?.let { text ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.getStringExtra(CameraPreviewActivity.EXTRA_QR_SCAN_RESULT)?.let { text ->
                 tvResult.text = text
                 cvResult.visibility = CardView.VISIBLE
                 Toast.makeText(this, "QR Code scanned successfully!", Toast.LENGTH_SHORT).show()

@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/drawable_result_text_background.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/drawable/result_text_background.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/layout_activity_qrgenerative.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/layout/activity_qrgenerative.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/drawable_scanner_frame.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/drawable/scanner_frame.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/drawable_rounded_button.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/drawable/rounded_button.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/layout_activity_camera_preview.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/layout/activity_camera_preview.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/xml_backup_rules.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/layout_activity_qrscanner.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/layout/activity_qrscanner.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/xml_data_extraction_rules.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/drawable_image_border.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/drawable/image_border.xml"
+    },
+    {
+        "merged": "com.ext.qrcodegenerator.QR Code Generator-debug-38:/drawable_image_placeholder.xml.flat",
+        "source": "com.ext.qrcodegenerator.QR Code Generator-main-40:/drawable/image_placeholder.xml"
+    }
+]

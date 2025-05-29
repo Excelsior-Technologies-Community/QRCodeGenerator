@@ -1,0 +1,41 @@
+com.ext.qrcodegenerator.QR Code Generator-cardview-1.0.0-0 C:\Users\yashr\.gradle\caches\8.9\transforms\055a939b0ac2e85f7e6708e88f7f295e\transformed\cardview-1.0.0\res
+com.ext.qrcodegenerator.QR Code Generator-lifecycle-process-2.6.1-1 C:\Users\yashr\.gradle\caches\8.9\transforms\076bf10e8eb9596bf3fe52c227cfafa5\transformed\lifecycle-process-2.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-appcompat-resources-1.6.1-2 C:\Users\yashr\.gradle\caches\8.9\transforms\0d53f234857d71cb95efe3887a67756b\transformed\appcompat-resources-1.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-activity-1.8.0-3 C:\Users\yashr\.gradle\caches\8.9\transforms\14d322e7113ae5d8dc5fb09c1367e6ae\transformed\activity-1.8.0\res
+com.ext.qrcodegenerator.QR Code Generator-lifecycle-viewmodel-savedstate-2.6.1-4 C:\Users\yashr\.gradle\caches\8.9\transforms\1f336cf6b55a03108d12fbe773def99e\transformed\lifecycle-viewmodel-savedstate-2.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-lifecycle-livedata-2.6.1-5 C:\Users\yashr\.gradle\caches\8.9\transforms\398df7b3574313fd78a59abce8e9cca7\transformed\lifecycle-livedata-2.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-camera-video-1.3.1-6 C:\Users\yashr\.gradle\caches\8.9\transforms\3d83782e31b0ad9076b3f4aa0ba69549\transformed\camera-video-1.3.1\res
+com.ext.qrcodegenerator.QR Code Generator-lifecycle-livedata-core-2.6.1-7 C:\Users\yashr\.gradle\caches\8.9\transforms\3e2d3a546f87cf300ebd65348a9feefa\transformed\lifecycle-livedata-core-2.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-lifecycle-viewmodel-2.6.1-8 C:\Users\yashr\.gradle\caches\8.9\transforms\4559de9dd62404150277cf1cd5f97b5a\transformed\lifecycle-viewmodel-2.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-camera-core-1.3.1-9 C:\Users\yashr\.gradle\caches\8.9\transforms\46454901ae3521ad810b729be4c7db05\transformed\camera-core-1.3.1\res
+com.ext.qrcodegenerator.QR Code Generator-constraintlayout-2.1.4-10 C:\Users\yashr\.gradle\caches\8.9\transforms\466d9c6adc87be7625993f719fb49c8f\transformed\constraintlayout-2.1.4\res
+com.ext.qrcodegenerator.QR Code Generator-annotation-experimental-1.3.1-11 C:\Users\yashr\.gradle\caches\8.9\transforms\561a26875d47846a9ee6b8a0c484c3a8\transformed\annotation-experimental-1.3.1\res
+com.ext.qrcodegenerator.QR Code Generator-material-1.11.0-12 C:\Users\yashr\.gradle\caches\8.9\transforms\565afb58e5a32fab7bb6f04feb0b04aa\transformed\material-1.11.0\res
+com.ext.qrcodegenerator.QR Code Generator-emoji2-views-helper-1.2.0-13 C:\Users\yashr\.gradle\caches\8.9\transforms\572752089f81622821b241fc1300c0a9\transformed\emoji2-views-helper-1.2.0\res
+com.ext.qrcodegenerator.QR Code Generator-fragment-1.3.6-14 C:\Users\yashr\.gradle\caches\8.9\transforms\62874654dd2ec5b731dcec44229cd5aa\transformed\fragment-1.3.6\res
+com.ext.qrcodegenerator.QR Code Generator-play-services-basement-18.1.0-15 C:\Users\yashr\.gradle\caches\8.9\transforms\6d6e7db049f94463069cc358ea651500\transformed\play-services-basement-18.1.0\res
+com.ext.qrcodegenerator.QR Code Generator-lifecycle-runtime-2.6.1-16 C:\Users\yashr\.gradle\caches\8.9\transforms\7aef6c451254beb463066bcae86b2ca0\transformed\lifecycle-runtime-2.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-play-services-base-18.1.0-17 C:\Users\yashr\.gradle\caches\8.9\transforms\7e06e3981c63816e752ff437a6a6f64e\transformed\play-services-base-18.1.0\res
+com.ext.qrcodegenerator.QR Code Generator-viewpager2-1.0.0-18 C:\Users\yashr\.gradle\caches\8.9\transforms\8009a34bb1f8bbbe59d765168f5570b7\transformed\viewpager2-1.0.0\res
+com.ext.qrcodegenerator.QR Code Generator-emoji2-1.2.0-19 C:\Users\yashr\.gradle\caches\8.9\transforms\8182ab9bfd4a37fa7bc36983eea8446f\transformed\emoji2-1.2.0\res
+com.ext.qrcodegenerator.QR Code Generator-core-1.12.0-20 C:\Users\yashr\.gradle\caches\8.9\transforms\84126cb49af2907827946d12f5ad00d2\transformed\core-1.12.0\res
+com.ext.qrcodegenerator.QR Code Generator-camera-camera2-1.3.1-21 C:\Users\yashr\.gradle\caches\8.9\transforms\a0189fefe4047d53cd504a2e9aa7e347\transformed\camera-camera2-1.3.1\res
+com.ext.qrcodegenerator.QR Code Generator-recyclerview-1.1.0-22 C:\Users\yashr\.gradle\caches\8.9\transforms\a7913a887ff6ca74f86467d0afff6494\transformed\recyclerview-1.1.0\res
+com.ext.qrcodegenerator.QR Code Generator-drawerlayout-1.1.1-23 C:\Users\yashr\.gradle\caches\8.9\transforms\b49f293a77e1917a2f1ca1070f26e495\transformed\drawerlayout-1.1.1\res
+com.ext.qrcodegenerator.QR Code Generator-core-runtime-2.2.0-24 C:\Users\yashr\.gradle\caches\8.9\transforms\b735c05016890a8c2c767f81e1ac7316\transformed\core-runtime-2.2.0\res
+com.ext.qrcodegenerator.QR Code Generator-savedstate-1.2.1-25 C:\Users\yashr\.gradle\caches\8.9\transforms\bcc08ad98fe2585fc6a4e1eed56ff8d7\transformed\savedstate-1.2.1\res
+com.ext.qrcodegenerator.QR Code Generator-profileinstaller-1.3.0-26 C:\Users\yashr\.gradle\caches\8.9\transforms\bcda269402e1b465c67167e7761df750\transformed\profileinstaller-1.3.0\res
+com.ext.qrcodegenerator.QR Code Generator-transition-1.2.0-27 C:\Users\yashr\.gradle\caches\8.9\transforms\c39bb5d6aac47e9e873fb615f617ce80\transformed\transition-1.2.0\res
+com.ext.qrcodegenerator.QR Code Generator-camera-lifecycle-1.3.1-28 C:\Users\yashr\.gradle\caches\8.9\transforms\c8d1aa72ecc47cad1aa06c2733b86664\transformed\camera-lifecycle-1.3.1\res
+com.ext.qrcodegenerator.QR Code Generator-camera-view-1.3.1-29 C:\Users\yashr\.gradle\caches\8.9\transforms\d4b85edff0513a5d02312abd6bb73aa4\transformed\camera-view-1.3.1\res
+com.ext.qrcodegenerator.QR Code Generator-coordinatorlayout-1.1.0-30 C:\Users\yashr\.gradle\caches\8.9\transforms\e43005b119a284d8cbba6fbec45e29a9\transformed\coordinatorlayout-1.1.0\res
+com.ext.qrcodegenerator.QR Code Generator-core-ktx-1.12.0-31 C:\Users\yashr\.gradle\caches\8.9\transforms\e8bfde8bcf2aba413ff6a514ebe986bf\transformed\core-ktx-1.12.0\res
+com.ext.qrcodegenerator.QR Code Generator-startup-runtime-1.1.1-32 C:\Users\yashr\.gradle\caches\8.9\transforms\f3a57fe951f98a942cca7cdfb0352c6f\transformed\startup-runtime-1.1.1\res
+com.ext.qrcodegenerator.QR Code Generator-appcompat-1.6.1-33 C:\Users\yashr\.gradle\caches\8.9\transforms\f755b44fcb4274a79631eff702bf6ae9\transformed\appcompat-1.6.1\res
+com.ext.qrcodegenerator.QR Code Generator-pngs-34 D:\Android Projects\QRCodeGenerator\QR Code Generator\build\generated\res\pngs\debug
+com.ext.qrcodegenerator.QR Code Generator-resValues-35 D:\Android Projects\QRCodeGenerator\QR Code Generator\build\generated\res\resValues\debug
+com.ext.qrcodegenerator.QR Code Generator-packageDebugResources-36 D:\Android Projects\QRCodeGenerator\QR Code Generator\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.ext.qrcodegenerator.QR Code Generator-packageDebugResources-37 D:\Android Projects\QRCodeGenerator\QR Code Generator\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.ext.qrcodegenerator.QR Code Generator-debug-38 D:\Android Projects\QRCodeGenerator\QR Code Generator\build\intermediates\merged_res\debug\mergeDebugResources
+com.ext.qrcodegenerator.QR Code Generator-debug-39 D:\Android Projects\QRCodeGenerator\QR Code Generator\src\debug\res
+com.ext.qrcodegenerator.QR Code Generator-main-40 D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\res

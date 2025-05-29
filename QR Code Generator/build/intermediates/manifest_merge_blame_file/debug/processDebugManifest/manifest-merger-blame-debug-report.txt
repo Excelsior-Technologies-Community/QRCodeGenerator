@@ -1,0 +1,54 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ext.qrcodegenerator" >
+4
+5    <uses-sdk android:minSdkVersion="26" />
+6
+7    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+7-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:4:5-80
+7-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:4:22-77
+8    <uses-permission
+8-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:5:5-7:38
+9        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+9-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:6:9-65
+10        android:maxSdkVersion="28" /> <!-- If you want to use camera for image capture (optional) -->
+10-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:7:9-35
+11    <uses-permission android:name="android.permission.CAMERA" /> <!-- For Android 13+ (API 33+) if you want to read media images -->
+11-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:8:5-65
+11-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:8:22-62
+12    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+12-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:9:5-76
+12-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:9:22-73
+13
+14    <uses-feature android:name="android.hardware.camera" />
+14-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:10:5-60
+14-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:10:19-57
+15    <uses-feature android:name="android.hardware.camera.autofocus" />
+15-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:11:5-70
+15-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:11:19-67
+16
+17    <application>
+17-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:13:5-24:19
+18        <activity
+18-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:14:9-16:40
+19            android:name="com.ext.codegenerator.QRScannerActivity"
+19-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:15:13-67
+20            android:exported="false" />
+20-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:16:13-37
+21        <activity
+21-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:17:9-19:40
+22            android:name="com.ext.codegenerator.QRGenerativeActivity"
+22-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:18:13-70
+23            android:exported="false" />
+23-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:19:13-37
+24        <activity
+24-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:20:9-23:66
+25            android:name="com.ext.codegenerator.CameraPreviewActivity"
+25-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:21:13-71
+26            android:exported="false"
+26-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:22:13-37
+27            android:theme="@style/Theme.AppCompat.NoActionBar" />
+27-->D:\Android Projects\QRCodeGenerator\QR Code Generator\src\main\AndroidManifest.xml:23:13-63
+28    </application>
+29
+30</manifest>

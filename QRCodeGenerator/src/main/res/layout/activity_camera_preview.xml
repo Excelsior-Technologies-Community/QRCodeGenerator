@@ -1,76 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".CameraPreviewActivity">
 
     <androidx.camera.view.PreviewView
-        android:id="@+id/preview_view"
+        android:id="@+id/previewView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Scanning overlay -->
-    <View
-        android:id="@+id/overlay_top"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:alpha="0.6"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/scanner_frame"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/overlay_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:alpha="0.6"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scanner_frame" />
-
-    <View
-        android:id="@+id/overlay_left"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.6"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@id/scanner_frame"
-        app:layout_constraintEnd_toStartOf="@id/scanner_frame"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/scanner_frame" />
-
-    <View
-        android:id="@+id/overlay_right"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.6"
-        android:background="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@id/scanner_frame"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/scanner_frame"
-        app:layout_constraintTop_toTopOf="@id/scanner_frame" />
-
-    <!-- Scanner frame -->
-    <View
-        android:id="@+id/scanner_frame"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:background="@drawable/scanner_frame"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Scanning hint text -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Align QR code within the frame"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scanner_frame" />
-
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout>
