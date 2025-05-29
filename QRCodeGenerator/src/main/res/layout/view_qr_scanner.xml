@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:context="com.ext.codegenerator.QRScannerActivity">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="QR Code Scanner"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose an option to scan QR code"
+                android:textAlignment="center"
+                android:textSize="16sp"
+                android:layout_marginBottom="32dp" />
+
+            <Button
+                android:id="@+id/btnRealtimeScan"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="📱 Scan QR Code (Real-time)"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/realtime_button_color" />
+
+            <Button
+                android:id="@+id/btnUploadImage"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="📁 Upload Image from Gallery"
+                android:textSize="16sp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/upload_button_color" />
+
+            <Button
+                android:id="@+id/btnCaptureImage"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="📷 Capture Image with Camera"
+                android:textSize="16sp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/rounded_button"
+                android:backgroundTint="@color/camera_button_color" />
+
+            <ImageView
+                android:id="@+id/ivScannedImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/image_border"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                android:contentDescription="Scanned Image" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Scan Result:"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:id="@+id/tvResult"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textIsSelectable="true"
+                        android:background="@drawable/result_text_background"
+                        android:padding="12dp"
+                        android:minHeight="60dp"
+                        android:gravity="center_vertical" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</merge>
