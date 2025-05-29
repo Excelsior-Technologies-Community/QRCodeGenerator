@@ -14,4 +14,5 @@ class QRGeneratorView @JvmOverloads constructor(
         orientation = VERTICAL
         LayoutInflater.from(context).inflate(R.layout.view_qr_generator, this, true)
     }
+
 }
