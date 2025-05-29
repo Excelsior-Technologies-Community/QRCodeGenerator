@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.ext.codegenerator.R
 
 class QRScannerView @JvmOverloads constructor(
     context: Context,

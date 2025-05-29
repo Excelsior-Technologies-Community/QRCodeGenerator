@@ -18,14 +18,18 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+import com.google.android.material.textfield.TextInputEditText
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
@@ -37,7 +41,13 @@ import java.util.EnumMap
 
 class QRGenerativeActivity : AppCompatActivity() {
 
-    private lateinit var qrGeneratorView: QRGeneratorView
+    private lateinit var etInputText: TextInputEditText
+    private lateinit var btnSelectImage: Button
+    private lateinit var btnGenerate: Button
+    private lateinit var btnDownload: Button
+    private lateinit var ivSelectedImage: ImageView
+    private lateinit var ivQrCode: ImageView
+    private lateinit var cvQrCode: CardView
 
     private var selectedImageBitmap: Bitmap? = null
     private var generatedQrBitmap: Bitmap? = null
@@ -64,8 +74,8 @@ class QRGenerativeActivity : AppCompatActivity() {
             result.data?.data?.let { uri ->
                 try {
                     selectedImageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-                    qrGeneratorView.ivSelectedImage.setImageBitmap(selectedImageBitmap)
-                    qrGeneratorView.showSelectedImage()
+                    ivSelectedImage.setImageBitmap(selectedImageBitmap)
+                    ivSelectedImage.visibility = ImageView.VISIBLE
                 } catch (e: IOException) {
                     Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show()
                 }
@@ -89,19 +99,25 @@ class QRGenerativeActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        qrGeneratorView = findViewById(R.id.qrGeneratorView)
+        etInputText = findViewById(R.id.etInputText)
+        btnSelectImage = findViewById(R.id.btnSelectImage)
+        btnGenerate = findViewById(R.id.btnGenerate)
+        btnDownload = findViewById(R.id.btnDownload)
+        ivSelectedImage = findViewById(R.id.ivSelectedImage)
+        ivQrCode = findViewById(R.id.ivQrCode)
+        cvQrCode = findViewById(R.id.cvQrCode)
     }
 
     private fun setupClickListeners() {
-        qrGeneratorView.btnSelectImage.setOnClickListener {
+        btnSelectImage.setOnClickListener {
             openImagePicker()
         }
 
-        qrGeneratorView.btnGenerate.setOnClickListener {
+        btnGenerate.setOnClickListener {
             generateQrCode()
         }
 
-        qrGeneratorView.btnDownload.setOnClickListener {
+        btnDownload.setOnClickListener {
             downloadQrCode()
         }
     }
@@ -109,7 +125,7 @@ class QRGenerativeActivity : AppCompatActivity() {
     private fun handleIncomingData() {
         // Handle pre-filled text
         intent.getStringExtra(EXTRA_INPUT_TEXT)?.let { inputText ->
-            qrGeneratorView.setInputText(inputText)
+            etInputText.setText(inputText)
         }
 
         // Handle pre-selected image
@@ -117,8 +133,8 @@ class QRGenerativeActivity : AppCompatActivity() {
             try {
                 val uri = Uri.parse(uriString)
                 selectedImageBitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
-                qrGeneratorView.ivSelectedImage.setImageBitmap(selectedImageBitmap)
-                qrGeneratorView.showSelectedImage()
+                ivSelectedImage.setImageBitmap(selectedImageBitmap)
+                ivSelectedImage.visibility = ImageView.VISIBLE
             } catch (e: Exception) {
                 Toast.makeText(this, "Error loading provided image", Toast.LENGTH_SHORT).show()
             }
@@ -136,7 +152,7 @@ class QRGenerativeActivity : AppCompatActivity() {
     }
 
     private fun generateQrCode() {
-        val inputText = qrGeneratorView.getInputText()
+        val inputText = etInputText.text.toString().trim()
 
         if (inputText.isEmpty()) {
             Toast.makeText(this, "Please enter text, URL, or emoji", Toast.LENGTH_SHORT).show()
@@ -153,8 +169,9 @@ class QRGenerativeActivity : AppCompatActivity() {
                 qrBitmap
             }
 
-            qrGeneratorView.ivQrCode.setImageBitmap(generatedQrBitmap)
-            qrGeneratorView.showQrCode()
+            ivQrCode.setImageBitmap(generatedQrBitmap)
+            cvQrCode.visibility = CardView.VISIBLE
+            btnDownload.visibility = Button.VISIBLE
 
             Toast.makeText(this, "QR Code generated successfully!", Toast.LENGTH_SHORT).show()
 
