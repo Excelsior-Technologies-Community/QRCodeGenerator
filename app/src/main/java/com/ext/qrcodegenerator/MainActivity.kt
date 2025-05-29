@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     private val qrGeneratorLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
