@@ -14,11 +14,13 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        google() // Optional but recommended for Android projects
         mavenCentral()
+        maven(url = "https://jitpack.io")
     }
 }
 
 rootProject.name = "QRCodeGenerator"
 include(":app")
-include(":QR Code Generator")
+include(":QRCodeGenerator")
+

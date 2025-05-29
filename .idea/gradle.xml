@@ -10,7 +10,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/QR Code Generator" />
+            <option value="$PROJECT_DIR$/QRCodeGenerator" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

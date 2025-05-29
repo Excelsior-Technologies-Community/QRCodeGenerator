@@ -45,5 +45,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(project(":QR Code Generator"))
+    implementation("com.github.yashraiyani098:QRCodeGenerator:1.0")
 }

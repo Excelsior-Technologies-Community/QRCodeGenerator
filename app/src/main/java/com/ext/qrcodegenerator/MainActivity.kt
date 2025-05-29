@@ -2,7 +2,6 @@ package com.ext.qrcodegenerator
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -43,7 +42,6 @@ class MainActivity : AppCompatActivity() {
         when (result.resultCode) {
             QRGenerativeActivity.RESULT_QR_GENERATED -> {
                 Toast.makeText(this, "QR Code generated successfully!", Toast.LENGTH_SHORT).show()
-                // You can get the bitmap if needed
                 val bitmap = result.data?.getParcelableExtra<Bitmap>(QRGenerativeActivity.EXTRA_QR_BITMAP)
                 bitmap?.let {
                     ivResult.setImageBitmap(it)
@@ -78,25 +76,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-
-        // Open QR Generator - user can input text/emoji/link and select image
         btnGenerateQR.setOnClickListener {
             openQRGenerator()
         }
-
-        // Open QR Scanner - user can upload image or capture from camera
         btnScanQR.setOnClickListener {
             openQRScanner()
         }
     }
 
-    // Simple method to open QR Generator with 2 fields (text and image)
     private fun openQRGenerator() {
         val intent = Intent(this, QRGenerativeActivity::class.java)
         qrGeneratorLauncher.launch(intent)
     }
 
-    // Simple method to open QR Scanner with 2 options (upload and capture)
     private fun openQRScanner() {
         val intent = Intent(this, QRScannerActivity::class.java)
         qrScannerLauncher.launch(intent)
