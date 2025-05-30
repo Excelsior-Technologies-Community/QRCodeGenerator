@@ -1,4 +1,4 @@
-package com.qrcodegen.library
+package com.ext.codegenerator
 
 import android.graphics.Color
 import androidx.annotation.ColorInt
