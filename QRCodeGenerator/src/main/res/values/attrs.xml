@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- QR Code View Attributes -->
+    <declare-styleable name="QRCodeView">
+        <!-- Title related attributes -->
+        <attr name="qr_title" format="string" />
+        <attr name="qr_titleTextSize" format="dimension" />
+        <attr name="qr_titleTextColor" format="color" />
+        <attr name="qr_showTitle" format="boolean" />
+
+        <!-- Input related attributes -->
+        <attr name="qr_inputHint" format="string" />
+        <attr name="qr_inputMaxLines" format="integer" />
+        <attr name="qr_imageDescriptionText" format="string" />
+
+        <!-- Button text attributes -->
+        <attr name="qr_selectImageButtonText" format="string" />
+        <attr name="qr_generateButtonText" format="string" />
+        <attr name="qr_downloadButtonText" format="string" />
+
+        <!-- QR Code appearance attributes -->
+        <attr name="qr_codeSize" format="dimension" />
+        <attr name="qr_backgroundColor" format="color" />
+        <attr name="qr_foregroundColor" format="color" />
+
+        <!-- Overlay attributes -->
+        <attr name="qr_overlaySize" format="float" />
+        <attr name="qr_overlayBorderColor" format="color" />
+        <attr name="qr_overlayBorderWidth" format="dimension" />
+        <attr name="qr_overlayBackgroundColor" format="color" />
+
+        <!-- Visibility attributes -->
+        <attr name="qr_showImageSelection" format="boolean" />
+        <attr name="qr_showDownloadButton" format="boolean" />
+    </declare-styleable>
+
+    <!-- QR Scanner View Attributes -->
+    <declare-styleable name="QRScannerView">
+        <!-- Scanner overlay attributes -->
+        <attr name="scanner_frame_color" format="color" />
+        <attr name="scanner_frame_width" format="dimension" />
+        <attr name="scanner_frame_height" format="dimension" />
+        <attr name="scanner_frame_corner_radius" format="dimension" />
+        <attr name="scanner_frame_stroke_width" format="dimension" />
+        <attr name="scanner_overlay_color" format="color" />
+    </declare-styleable>
+
+    <!-- Camera Preview Attributes -->
+    <declare-styleable name="CameraPreviewView">
+        <!-- Preview size attributes -->
+        <attr name="preview_aspect_ratio" format="float" />
+        <attr name="preview_scale_type">
+            <enum name="fitStart" value="0" />
+            <enum name="fitCenter" value="1" />
+            <enum name="fitEnd" value="2" />
+            <enum name="fillStart" value="3" />
+            <enum name="fillCenter" value="4" />
+            <enum name="fillEnd" value="5" />
+        </attr>
+    </declare-styleable>
+</resources> 
