@@ -33,6 +33,5 @@
 
         <!-- Visibility Configuration -->
         <attr name="qr_showDownloadButton" format="boolean" />
-
     </declare-styleable>
 </resources>

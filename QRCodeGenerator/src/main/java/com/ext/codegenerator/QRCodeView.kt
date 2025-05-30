@@ -176,10 +176,16 @@ class QRCodeView @JvmOverloads constructor(
     }
 
     private fun openImagePicker() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        // Note: This requires activity context to handle result
-        // Users should handle this in their activity
-        onImageSelectedListener?.invoke(selectedImageBitmap ?: return)
+        // Instead of trying to launch directly, use a callback
+        onImagePickerRequestListener?.invoke()
+    }
+
+    // Add this property
+    private var onImagePickerRequestListener: (() -> Unit)? = null
+
+    // Add this public method
+    fun setOnImagePickerRequestListener(listener: () -> Unit) {
+        onImagePickerRequestListener = listener
     }
 
     fun setImageFromUri(uri: Uri) {
@@ -233,7 +239,16 @@ class QRCodeView @JvmOverloads constructor(
     private fun createQRCodeBitmap(text: String, width: Int, height: Int): Bitmap {
         val hints = EnumMap<EncodeHintType, Any>(EncodeHintType::class.java).apply {
             put(EncodeHintType.CHARACTER_SET, "UTF-8")
-            put(EncodeHintType.ERROR_CORRECTION, com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.H)
+
+            // Map your config's ErrorCorrectionLevel to ZXing's ErrorCorrectionLevel
+            val errorCorrectionLevel = when (config.errorCorrectionLevel) {
+                QRCodeConfig.ErrorCorrectionLevel.LOW -> com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.L
+                QRCodeConfig.ErrorCorrectionLevel.MEDIUM -> com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.M
+                QRCodeConfig.ErrorCorrectionLevel.QUARTILE -> com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.Q
+                QRCodeConfig.ErrorCorrectionLevel.HIGH -> com.google.zxing.qrcode.decoder.ErrorCorrectionLevel.H
+            }
+
+            put(EncodeHintType.ERROR_CORRECTION, errorCorrectionLevel)
             put(EncodeHintType.MARGIN, 2)
         }
 
@@ -314,6 +329,7 @@ class QRCodeView @JvmOverloads constructor(
 
         return result
     }
+
 
     private fun getCircularBitmap(bitmap: Bitmap): Bitmap {
         val output = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
