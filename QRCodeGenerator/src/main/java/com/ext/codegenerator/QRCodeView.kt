@@ -19,7 +19,7 @@ import com.google.zxing.EncodeHintType
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
 import com.google.zxing.common.BitMatrix
-import com.qrcodegen.library.QRCodeConfig
+
 import java.io.IOException
 import java.util.*
 
