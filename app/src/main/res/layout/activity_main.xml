@@ -1,68 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:padding="16dp">
 
-    <com.ext.codegenerator.QRCodeView
-        android:id="@+id/qrCodeView"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:hint="Enter text for QR code"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Example 2: Customized QR Code View using XML attributes -->
-    <!--
-    <com.qrcodegen.library.QRCodeView
-        android:id="@+id/qrCodeViewCustom"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="2" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Select Center Image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputLayout" />
+
+    <ImageView
+        android:id="@+id/selectedImage"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="@id/btnSelectImage"
+        app:layout_constraintStart_toEndOf="@id/btnSelectImage"
+        app:layout_constraintTop_toTopOf="@id/btnSelectImage" />
+
+    <LinearLayout
+        android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:qr_title="My Custom QR Generator"
-        app:qr_titleTextSize="28sp"
-        app:qr_titleTextColor="@android:color/holo_blue_dark"
-        app:qr_inputHint="Enter your text here"
-        app:qr_inputMaxLines="6"
-        app:qr_generateButtonText="Create QR Code"
-        app:qr_downloadButtonText="Save to Gallery"
-        app:qr_codeSize="400dp"
-        app:qr_backgroundColor="@android:color/white"
-        app:qr_foregroundColor="@android:color/black"
-        app:qr_overlaySize="0.3"
-        app:qr_overlayBorderColor="@android:color/holo_red_dark"
-        app:qr_overlayBorderWidth="8"
-        app:qr_showTitle="true"
-        app:qr_showImageSelection="true"
-        app:qr_showDownloadButton="true" />
-    -->
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/btnSelectImage">
 
-    <!-- Example 3: Minimal QR Code View (no title, no image selection) -->
-    <!--
-    <com.qrcodegen.library.QRCodeView
-        android:id="@+id/qrCodeViewMinimal"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGenerate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="Generate QR" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnScan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Scan QR" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnScanFromImage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:qr_showTitle="false"
-        app:qr_showImageSelection="false"
-        app:qr_showDownloadButton="false"
-        app:qr_codeSize="300dp" />
-    -->
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Scan QR from Image"
+        app:layout_constraintTop_toBottomOf="@id/buttonContainer" />
 
-    <!-- Example 4: Dark Theme QR Code View -->
-    <!--
-    <com.qrcodegen.library.QRCodeView
-        android:id="@+id/qrCodeViewDark"
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"
-        app:qr_title="Dark QR Generator"
-        app:qr_titleTextColor="@android:color/white"
-        app:qr_backgroundColor="@android:color/black"
-        app:qr_foregroundColor="@android:color/white"
-        app:qr_overlayBorderColor="@android:color/white"
-        app:qr_overlayBackgroundColor="@android:color/black" />
-</LinearLayout>
-   -->
+        android:layout_height="0dp"
+        android:layout_marginVertical="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/resultText"
+        app:layout_constraintTop_toBottomOf="@id/btnScanFromImage" />
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/qrCodeImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="16dp"
+        app:layout_constraintBottom_toTopOf="@id/resultText"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnScanFromImage" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/resultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
