@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import com.ext.qrcodelibrary.databinding.ViewQrCodeBinding
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
 
 class QRCodeView @JvmOverloads constructor(
     context: Context,
@@ -76,11 +77,14 @@ class QRCodeView @JvmOverloads constructor(
     private fun generateQRCode() {
         val content = binding.inputText.text.toString()
         if (content.isNotEmpty()) {
-            val qrCode = qrCodeManager.generateQRCode(
+            val config = QRCodeManager.QRConfig(
                 content = content,
                 size = 512,
-                centerImage = selectedImage
+                centerImage = selectedImage,
+                centerImageSize = 0.2f,
+                errorCorrectionLevel = ErrorCorrectionLevel.H
             )
+            val qrCode = qrCodeManager.generateQRCode(config)
             generatedQRCode = qrCode
             binding.qrCodeImageView.setImageBitmap(qrCode)
             onQRGeneratedListener?.invoke(qrCode)
