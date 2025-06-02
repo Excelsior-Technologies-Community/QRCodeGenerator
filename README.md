@@ -18,7 +18,7 @@ Add the dependency to your app's build.gradle:
 
 ```gradle
 dependencies {
-    implementation 'com.github.YourUsername:QRCodeGenerator:1.0.0'
+    implementation 'com.github.yashraiyani098:QRCodeGenerator:1.4.0'
 }
 ```
 
@@ -215,7 +215,7 @@ qrCodeManager.startQRCodeScanning(
 ```
 MIT License
 
-Copyright (c) 2024 YourName
+Copyright (c) 2025 Excelsior Technologies Pvt. Ltd.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
