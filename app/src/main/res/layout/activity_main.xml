@@ -10,12 +10,22 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/modeSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch to Scan Mode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Generation Mode Views -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint="Enter text for QR code"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/modeSwitch">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/inputText"
@@ -41,97 +51,101 @@
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:scaleType="centerCrop"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/btnSelectImage"
             app:layout_constraintStart_toEndOf="@id/btnSelectImage"
             app:layout_constraintTop_toTopOf="@id/btnSelectImage" />
 
-        <LinearLayout
-            android:id="@+id/buttonContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/btnSelectImage">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnGenerate"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:text="Generate QR" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnScan"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
-                android:text="Scan QR" />
-
-        </LinearLayout>
-
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnScanFromImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Scan QR from Image"
-            app:layout_constraintTop_toBottomOf="@id/buttonContainer" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/qrContainer"
+            android:id="@+id/btnGenerate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintTop_toBottomOf="@id/btnScanFromImage">
+            android:text="Generate QR"
+            app:layout_constraintTop_toBottomOf="@id/btnSelectImage" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.camera.view.PreviewView
-                    android:id="@+id/previewView"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:visibility="gone" />
-
-                <ImageView
-                    android:id="@+id/qrCodeImage"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:padding="16dp"
-                    android:scaleType="fitCenter" />
-
-            </FrameLayout>
-
-        </androidx.cardview.widget.CardView>
+        <com.ext.qrcodelibrary.QRCodeView
+            android:id="@+id/qrCodeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnGenerate"
+            app:qr_showTitle="false"
+            app:qr_showImageSelection="false"
+            app:qr_showDownloadButton="false"
+            app:qr_foregroundColor="#0000FF"
+            app:qr_backgroundColor="#FFFFFF"
+            app:qr_codeSize="512dp"
+            app:qr_overlaySize="0.2"
+            app:qr_overlayBorderColor="#FFFFFF"
+            app:qr_overlayBorderWidth="4dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDownload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Download QR Code"
-            android:textAllCaps="false"
-            android:visibility="gone"
-            app:icon="@android:drawable/ic_menu_save"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/qrContainer" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/resultText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnDownload" />
+            android:text="Save QR Code"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/qrCodeView" />
+
+        <!-- Scanning Mode Views -->
+        <com.ext.qrcodelibrary.QRScannerView
+            android:id="@+id/qrScannerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/resultContainer"
+            app:layout_constraintTop_toBottomOf="@id/modeSwitch"
+            app:scanner_frame_color="#FFFFFF"
+            app:scanner_frame_width="250dp"
+            app:scanner_frame_height="250dp"
+            app:scanner_frame_corner_radius="8dp"
+            app:scanner_frame_stroke_width="2dp"
+            app:scanner_overlay_color="#33000000" />
+
+        <!-- Result Container -->
+        <LinearLayout
+            android:id="@+id/resultContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/resultText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCopy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="Copy"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShare"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Share"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

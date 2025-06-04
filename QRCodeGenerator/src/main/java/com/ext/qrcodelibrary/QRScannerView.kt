@@ -4,6 +4,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.camera.core.Camera
+import androidx.camera.core.ExperimentalGetImage
+import androidx.camera.core.TorchState
 import androidx.camera.view.PreviewView
 import androidx.lifecycle.LifecycleOwner
 import com.ext.qrcodelibrary.databinding.ViewQrScannerBinding
@@ -18,9 +21,12 @@ class QRScannerView @JvmOverloads constructor(
         LayoutInflater.from(context), this
     )
     private var qrCodeManager: QRCodeManager = QRCodeManager(context)
+    private var camera: Camera? = null
+    private var isFlashOn = false
 
     init {
         loadAttributes(attrs)
+        setupFlashButton()
     }
 
     private fun loadAttributes(attrs: AttributeSet?) {
@@ -52,17 +58,54 @@ class QRScannerView @JvmOverloads constructor(
         }
     }
 
+    private fun setupFlashButton() {
+        binding.flashToggleButton.setOnClickListener {
+            toggleFlash()
+        }
+        // Initially hide the flash button until we confirm flash is available
+        binding.flashToggleButton.visibility = GONE
+    }
+
+    private fun toggleFlash() {
+        camera?.let { camera ->
+            isFlashOn = !isFlashOn
+            camera.cameraControl.enableTorch(isFlashOn)
+            updateFlashIcon()
+        }
+    }
+
+    private fun updateFlashIcon() {
+        binding.flashToggleButton.setImageResource(
+            if (isFlashOn) R.drawable.ic_flash_on else R.drawable.ic_flash_off
+        )
+    }
+
+    @ExperimentalGetImage
     fun startScanning(lifecycleOwner: LifecycleOwner, callback: (String) -> Unit) {
         qrCodeManager.startQRCodeScanning(
             previewView = binding.previewView,
             lifecycleOwner = lifecycleOwner,
             scanAreaSize = 0.8f,
-            callback = callback
+            callback = callback,
+            onCameraReady = { cam ->
+                camera = cam
+                // Show flash button only if flash is available
+                cam.cameraInfo.hasFlashUnit().let { hasFlash ->
+                    binding.flashToggleButton.visibility = if (hasFlash) VISIBLE else GONE
+                }
+                // Observe torch state
+                cam.cameraInfo.torchState.observe(lifecycleOwner) { torchState ->
+                    isFlashOn = torchState == TorchState.ON
+                    updateFlashIcon()
+                }
+            }
         )
     }
 
     fun stopScanning() {
+        camera?.cameraControl?.enableTorch(false)
         qrCodeManager.stopScanning()
+        camera = null
     }
 
     fun getPreviewView(): PreviewView = binding.previewView

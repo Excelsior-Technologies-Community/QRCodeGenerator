@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">codeGenerator</string>
+    <string name="generated_qr_code">Generated QR Code</string>
 </resources>

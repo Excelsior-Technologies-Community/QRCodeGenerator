@@ -22,4 +22,14 @@
         android:layout_gravity="center"
         android:background="@drawable/scanner_frame" />
 
+    <ImageButton
+        android:id="@+id/flashToggleButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:layout_gravity="top|start"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_flash_off"
+        android:contentDescription="Toggle flash" />
+
 </merge>

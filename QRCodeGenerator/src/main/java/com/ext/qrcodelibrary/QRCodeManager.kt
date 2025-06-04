@@ -3,10 +3,12 @@ package com.ext.qrcodelibrary
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.*
+import android.hardware.Camera
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.annotation.OptIn
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -102,37 +104,46 @@ class QRCodeManager(private val context: Context) {
         }
     }
 
+    @ExperimentalGetImage
     fun startQRCodeScanning(
         previewView: PreviewView,
         lifecycleOwner: LifecycleOwner,
         scanAreaSize: Float = 0.8f,
-        callback: (String) -> Unit
+        callback: (String) -> Unit,
+        onCameraReady: (androidx.camera.core.Camera) -> Unit = {}
     ) {
-        qrCodeScanCallback = callback
         val cameraProviderFuture = ProcessCameraProvider.getInstance(context)
 
         cameraProviderFuture.addListener({
-            val cameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder().build()
-            preview.setSurfaceProvider(previewView.surfaceProvider)
-
-            val imageAnalyzer = ImageAnalysis.Builder()
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build()
-                .apply {
-                    setAnalyzer(cameraExecutor) { imageProxy ->
-                        processImageProxy(imageProxy, scanAreaSize)
-                    }
-                }
-
             try {
+                val cameraProvider = cameraProviderFuture.get()
+                val preview = Preview.Builder().build()
+                preview.setSurfaceProvider(previewView.surfaceProvider)
+
+                val imageAnalyzer = ImageAnalysis.Builder()
+                    .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                    .build()
+                    .apply {
+                        setAnalyzer(
+                            ContextCompat.getMainExecutor(context),
+                            QRCodeAnalyzer(scanAreaSize) { result ->
+                                callback(result)
+                            }
+                        )
+                    }
+
+                val cameraSelector = CameraSelector.Builder()
+                    .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                    .build()
+
                 cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
+                val camera = cameraProvider.bindToLifecycle(
                     lifecycleOwner,
-                    CameraSelector.DEFAULT_BACK_CAMERA,
+                    cameraSelector,
                     preview,
                     imageAnalyzer
                 )
+                onCameraReady(camera)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -164,7 +175,7 @@ class QRCodeManager(private val context: Context) {
         }
     }
 
-    private fun processImageProxy(imageProxy: ImageProxy, scanAreaSize: Float) {
+    @OptIn(ExperimentalGetImage::class) private fun processImageProxy(imageProxy: ImageProxy, scanAreaSize: Float) {
         val mediaImage = imageProxy.image
         if (mediaImage != null) {
             val image = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
