@@ -2,6 +2,126 @@
 
 A powerful and feature-rich Android library for generating and scanning QR codes with advanced customization options.
 
+## Gradle
+
+```gradle
+dependencies {
+    implementation 'com.ext:qrcodelibrary:1.0.0'
+}
+```
+
+## Usage
+
+### Basic QR Code Generation
+
+```kotlin
+val qrCodeManager = QRCodeManager(context)
+
+// Create basic configuration
+val basicConfig = QRCodeManager.QRConfig(
+    content = "https://example.com"
+)
+
+// Generate QR code
+val qrBitmap = qrCodeManager.generateQRCode(basicConfig)
+```
+
+### Customized QR Code
+
+```kotlin
+val customConfig = QRCodeManager.QRConfig(
+    content = "https://example.com",
+    size = 512,
+    qrColor = Color.BLUE,           // Custom QR code color
+    backgroundColor = Color.WHITE,   // Custom background color
+    errorCorrectionLevel = ErrorCorrectionLevel.H  // Higher error correction
+)
+```
+
+### QR Code with Center Image
+
+```kotlin
+val configWithImage = QRCodeManager.QRConfig(
+    content = "https://example.com",
+    size = 512,
+    centerImage = yourBitmap,        // Your center image
+    centerImageSize = 0.2f,          // Image size (20% of QR code)
+    circleBorderColor = Color.WHITE, // Border color around image
+    circleBorderWidth = 4f           // Border width in pixels
+)
+```
+
+### QR Code with Glow Effect
+
+```kotlin
+val glowConfig = QRCodeManager.QRConfig(
+    content = "https://example.com",
+    size = 512,
+    addGlow = true,
+    glowColor = Color.BLUE,
+    glowRadius = 8f
+)
+```
+
+### QR Code Scanning
+
+```kotlin
+// Initialize scanner
+val qrCodeManager = QRCodeManager(context)
+
+// Start scanning
+qrCodeManager.startQRCodeScanning(
+    previewView = previewView,       // CameraX PreviewView in your layout
+    lifecycleOwner = lifecycleOwner, // Activity or Fragment
+    scanAreaSize = 0.8f             // Scanner area (80% of screen)
+) { result ->
+    // Handle scanned result
+    handleQRContent(result)
+}
+
+// Don't forget to stop scanning when done
+override fun onDestroy() {
+    super.onDestroy()
+    qrCodeManager.stopScanning()
+}
+```
+
+### Required XML for Scanner
+
+```xml
+<androidx.camera.view.PreviewView
+    android:id="@+id/previewView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+```
+
+### Image-based QR Scanning
+
+```kotlin
+// Scan from Uri (Gallery image)
+val result = qrCodeManager.scanQRFromImage(uri)
+result?.let {
+    // Handle scanned content
+}
+```
+
+### Saving QR Codes
+
+```kotlin
+// Save to gallery with custom name
+val uri = qrCodeManager.saveQRCodeToGallery(
+    context = context,
+    bitmap = qrBitmap,
+    fileName = "MyQRCode.png"
+)
+
+// Handle result
+uri?.let {
+    // QR code saved successfully
+    // Use uri for sharing or further processing
+}
+```
+
 ## Features
 
 - 🎨 **Customizable QR Code Generation**
@@ -21,72 +141,6 @@ A powerful and feature-rich Android library for generating and scanning QR codes
   - Save QR codes to device gallery
   - High-quality PNG export
   - Automatic file naming
-
-## Installation
-
-Add the following to your project's `build.gradle` file:
-
-```gradle
-dependencies {
-    implementation 'com.ext:qrcodelibrary:1.0.0'
-}
-```
-
-## Usage
-
-### Generating QR Codes
-
-```kotlin
-val qrCodeManager = QRCodeManager(context)
-
-// Basic QR Code
-val basicConfig = QRCodeManager.QRConfig(
-    content = "https://example.com"
-)
-val basicQRCode = qrCodeManager.generateQRCode(basicConfig)
-
-// Advanced QR Code with customization
-val advancedConfig = QRCodeManager.QRConfig(
-    content = "https://example.com",
-    size = 512,
-    centerImage = yourLogoBitmap,
-    centerImageSize = 0.2f,
-    qrColor = Color.BLACK,
-    backgroundColor = Color.WHITE,
-    errorCorrectionLevel = ErrorCorrectionLevel.H,
-    circleBorderColor = Color.WHITE,
-    circleBorderWidth = 4f,
-    addGlow = true,
-    glowColor = Color.WHITE,
-    glowRadius = 10f
-)
-val advancedQRCode = qrCodeManager.generateQRCode(advancedConfig)
-
-// Save to gallery
-qrCodeManager.saveQRCodeToGallery(context, advancedQRCode, "my_qr_code.png")
-```
-
-### Scanning QR Codes
-
-```kotlin
-// Real-time scanning
-qrCodeManager.startQRCodeScanning(
-    previewView = previewView,
-    lifecycleOwner = this,
-    scanAreaSize = 0.8f,
-    callback = { result ->
-        // Handle scanned QR code result
-        Log.d("QRCode", "Scanned: $result")
-    },
-    onCameraReady = { camera ->
-        // Camera is ready
-    }
-)
-
-// Scan from image
-val uri = // Your image URI
-val result = qrCodeManager.scanQRFromImage(uri)
-```
 
 ## Requirements
 
@@ -112,17 +166,38 @@ Add the following permissions to your `AndroidManifest.xml`:
     android:maxSdkVersion="28" />
 ```
 
-## Contributing
+## FAQ
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+**How can I add a custom center image to my QR code?**
+You can use the `centerImage` parameter in `QRConfig` to add any bitmap as a center image. The image will be automatically scaled and centered in the QR code.
+
+**What's the best error correction level to use?**
+For most use cases, `ErrorCorrectionLevel.H` (High) is recommended as it provides the best error correction capability, especially when adding a center image.
+
+**How can I handle scanning failures?**
+The library includes built-in error handling. For real-time scanning, the callback will only be triggered when a valid QR code is detected. For image scanning, the result will be null if scanning fails.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+```
+Copyright 2024 [Your Name]
 
-## Author
+Licensed under the MIT License (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-[Your Name]
+    http://opensource.org/licenses/MIT
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Support
 
