@@ -114,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnDownload.setOnClickListener {
             binding.qrCodeView.getQRCodeBitmap()?.let { bitmap ->
                 saveQRCodeToGallery(bitmap)
+
             }
         }
     }
