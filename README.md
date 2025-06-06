@@ -1,6 +1,6 @@
 # QRCodeGenerator
 
-A flexible Android library for generating and scanning QR codes, packed with customization options. This guide walks you through setup, usage, and best practices for both QR code generation and scanning.
+A flexible Android library for generating and scanning QR codes, packed with customization options. This guide walks you through setup, usage, and best practices for both QR code generation and scanning in a smooth way.
 
 ## JitPack Setup
 
