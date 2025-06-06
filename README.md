@@ -193,7 +193,7 @@ Here's what the library looks like in action:
 
 ### 1. QR Code Generation with Center Image
 
-![QR Code Generation with Center Image](images/qr_generate_center_image.jpg)
+![QR Code Generation with Center Image](images/qr_generate_center_image2.jpg)
 
 *Generate a QR code with your own text and a custom image in the center. Great for branding or personal use.*
 
@@ -201,7 +201,7 @@ Here's what the library looks like in action:
 
 ### 2. QR Code Scanning Mode (Empty)
 
-![QR Code Scanning Mode (Empty)](images/qr_scan_empty.jpg)
+![QR Code Scanning Mode (Empty)](images/qr_scan_empty2.jpg)
 
 *The scanner is ready to detect a QR code. Just point your camera and wait for the magic.*
 
@@ -209,7 +209,7 @@ Here's what the library looks like in action:
 
 ### 3. QR Code Scanning Mode (Result Detected)
 
-![QR Code Scanning Mode (Result Detected)](images/qr_scan_result.jpg)
+![QR Code Scanning Mode (Result Detected)](images/qr_scan_result2.jpg)
 
 *Once a QR code is found, the result pops up and you can copy or share it instantly.*
 
