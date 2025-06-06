@@ -119,6 +119,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
     @OptIn(ExperimentalGetImage::class)
     private fun setupQRScannerView() {
         binding.qrScannerView.apply {
