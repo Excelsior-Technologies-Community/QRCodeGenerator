@@ -25,7 +25,7 @@ Add the library to your app-level `build.gradle`:
 ```gradle
 // app/build.gradle
 dependencies {
-    implementation 'com.ext:qrcodelibrary:1.9.0'
+    implementation 'com.ext:qrcodelibrary:1.0.0'
 }
 ```
 
