@@ -2,12 +2,12 @@
 
 A flexible Android library for generating and scanning QR codes, packed with customization options. This guide walks you through setup, usage, and best practices for both QR code generation and scanning in a smooth way.
 
-## JitPack Setup
+## JitPack Setup (Necessary for JitPack CI and importing library) 
 
 To get started, add the JitPack repository to your root settings file. This lets Gradle fetch the library for you.
 
 ```kotlin
-// settings.gradle.kts (root)
+// Put below code in your settings.gradle.kts (root) file of your project
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -18,14 +18,20 @@ dependencyResolutionManagement {
 }
 ```
 
-## Gradle Dependency
+## Gradle Dependency (Necessary for use library)
 
 Add the library to your app-level `build.gradle`:
 
 ```gradle
-// app/build.gradle
+// Put below code in your app/build.gradle (if you are using Groovy-DSL)
 dependencies {
     implementation 'com.ext:qrcodelibrary:1.0.0'
+}
+
+
+// Put below code in your app/build.gradle.kts (if you are using Kotlin-DSL)
+dependencies {
+    implementation("com.ext:qrcodelibrary:1.0.0")
 }
 ```
 
@@ -38,7 +44,7 @@ Here's how to generate and scan QR codes, pass data in, and get results out.
 Drop the `QRCodeView` into your layout and you're ready to go. You can set the content, tweak the look, and even add a logo or photo in the center.
 
 ```xml
-<!-- In your layout XML -->
+<!-- Put below code in your layout XML -->
 <com.ext.qrcodelibrary.QRCodeView
     android:id="@+id/qrCodeView"
     android:layout_width="match_parent"
@@ -55,12 +61,13 @@ Drop the `QRCodeView` into your layout and you're ready to go. You can set the c
 ```
 
 ```kotlin
+// Get the QRCodeView instance by below line and make sure id given by you is same as you are using in below line
 val qrCodeView = findViewById<QRCodeView>(R.id.qrCodeView)
 
 // Set the text or URL you want to encode
 qrCodeView.setContent("https://example.com")
 
-// Optional: customize colors, size, and overlay
+// Optional: Use below if you want customize colors, size, and overlay in your generated QR
 qrCodeView.apply {
     setForegroundColor(Color.BLUE)
     setBackgroundColor(Color.WHITE)
@@ -70,16 +77,16 @@ qrCodeView.apply {
     setOverlayBorderWidth(4f)
 }
 
-// Optional: add a center image (e.g., logo or profile pic)
+// Optional: To add a center image (e.g., logo or profile pic)
 qrCodeView.setCenterImage(bitmap)
 
-// Generate the QR code
+// Necessary to Generate the QR code
 qrCodeView.generateQRCode()
 
 // Get the generated bitmap if you need it
 val qrBitmap = qrCodeView.getQRCodeBitmap()
 
-// Save the QR code to storage
+// To save the QR code in your local storage
 qrCodeView.saveQRCode("MyQRCode.png") { uri ->
     // uri is the saved file location
 }
@@ -90,6 +97,7 @@ qrCodeView.saveQRCode("MyQRCode.png") { uri ->
 Add `QRScannerView` to your layout to scan QR codes in real time. Just set up a listener to get the result when a code is found.
 
 ```xml
+<!-- Put below code in your layout XML for QR Scanning -->
 <com.ext.qrcodelibrary.QRScannerView
     android:id="@+id/qrScannerView"
     android:layout_width="match_parent"
@@ -105,22 +113,22 @@ Add `QRScannerView` to your layout to scan QR codes in real time. Just set up a 
 ```kotlin
 val qrScannerView = findViewById<QRScannerView>(R.id.qrScannerView)
 
-// Initialize the scanner (call this in onCreate or onViewCreated)
+// To Initialize the scanner (call this in onCreate or onViewCreated)
 qrScannerView.initialize(lifecycleOwner)
 
-// Listen for scan results
+// To get scan results from the scanned QR
 qrScannerView.setOnQRCodeScannedListener { result ->
-    // Do something with the scanned text
+    // Do something with the scanned text like pass to an activity
     handleQRContent(result)
 }
 
-// Start scanning when ready
+// Necessary for Start scanning when ready
 qrScannerView.startScanning()
 
-// Stop scanning when done (e.g., in onPause)
+// For Stopping scanning when done (e.g., in onPause())
 qrScannerView.stopScanning()
 
-// You can also tweak the scanner's appearance
+// You can also update the scanner's appearance
 qrScannerView.apply {
     setFrameColor(Color.WHITE)
     setFrameSize(250f)
@@ -138,12 +146,15 @@ Camera and storage permissions are needed for scanning and saving QR codes. Add 
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
     android:maxSdkVersion="28" />
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<uses-feature android:name="android.hardware.camera.autofocus" />
+
 ```
 
 To request permissions at runtime:
 
 ```kotlin
-// Check and request permissions before scanning
+// To check and request permissions before scanning
 private fun checkAndRequestPermissions() {
     if (qrScannerView.hasRequiredPermissions()) {
         qrScannerView.startScanning()
@@ -152,7 +163,7 @@ private fun checkAndRequestPermissions() {
     }
 }
 
-// Forward the result to the scanner
+// For forwarding the result to the scanner
 override fun onRequestPermissionsResult(
     requestCode: Int,
     permissions: Array<out String>,
@@ -177,7 +188,7 @@ qrCodeView.setOnErrorListener { error ->
     }
 }
 
-// For scanning
+// For scanning QR code
 qrScannerView.setOnErrorListener { error ->
     when (error) {
         QRScannerError.CAMERA_PERMISSION_DENIED -> // Ask user to enable camera
